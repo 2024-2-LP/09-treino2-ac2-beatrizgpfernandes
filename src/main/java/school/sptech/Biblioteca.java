@@ -41,21 +41,8 @@ public class Biblioteca {
     }
 
     public void removerLivroPorTitulo(String titulo) {
-        if (titulo == null || titulo.isEmpty() || titulo.isBlank()) {
-            throw new ArgumentoInvalidoException("Os argumentos passados estão inválidos");
-        } else {
-            Boolean livroRemovido = false;
-            for (int i = 0; i < livros.size(); i++) {
-                Livro livroAtual = livros.get(i);
-                if (livroAtual.getTitulo().equalsIgnoreCase(titulo)) {
-                    livros.remove(livroAtual);
-                    livroRemovido = true;
-                }
-            }
-            if (!livroRemovido) {
-                throw new LivroNaoEncontradoException("O livro não foi encontrado");
-            }
-        }
+        Livro livro = buscarLivroPorTitulo(titulo);
+        livros.remove(livro);
     }
 
     public Livro buscarLivroPorTitulo(String titulo) {
@@ -83,7 +70,7 @@ public class Biblioteca {
 
         for (int i = 0; i < livros.size(); i++) {
             Livro livroAtual = livros.get(i);
-            if (livroAtual.getDataPublicacao().getYear() <= ano ) {
+            if (livroAtual.getDataPublicacao().getYear() <= ano) {
                 livrosAteAno.add(livroAtual);
             }
         }
